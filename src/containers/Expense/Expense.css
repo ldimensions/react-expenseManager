@@ -1,0 +1,5 @@
+.card-header-actions {
+    display: inline-block;
+    float: right;
+    margin-right: -.25rem;
+}

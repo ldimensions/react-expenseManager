@@ -1,26 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import store from './store/store';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const loading = () => <div className="">Loading...</div>;
+
+const Login = React.lazy(() => import('./containers/Login/Login'));
+const Register = React.lazy(() => import('./containers/Register/Register'));
+const Main = React.lazy(() => import('./containers/Main/Main'));
+
+class App extends Component {
+    
+    render () {
+        return (
+            <Provider store={store}>
+                <Router>
+                    <React.Suspense fallback={loading()}>
+                        <Switch>
+                            <Route exact path="/login" name="Login Page" render={props => <Login {...props}/>} />
+                            <Route exact path="/register" name="Register Page" render={props => <Register {...props}/>} />
+                            <Route path="/" render={props => <Main {...props} /> } />
+                        </Switch>
+                    </React.Suspense>
+                </Router>
+            </Provider>
+        );
+    }
 }
 
 export default App;

@@ -1,0 +1,18 @@
+.breadcrumb {
+    position: relative;
+    border-radius: 0 !important;
+    border-bottom: 1px solid #c8ced3;
+    background: white;
+    margin-left: -15px;
+    margin-right: -15px;
+    -webkit-transition: left .25s,right .25s,width .25s;
+    transition: left .25s,right .25s,width .25s;
+}
+.breadcrumb a {
+    color: #20a8d8;
+    text-decoration: none;
+    background-color: transparent;
+}
+.breadcrumb-item.active {
+    color: #73818f;
+}
